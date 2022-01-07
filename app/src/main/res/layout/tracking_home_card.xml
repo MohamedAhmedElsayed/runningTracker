@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_16sdp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/duration_tv"
+        style="@style/Headline_Title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="00:00:00"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/duration_subtitle_tv"
+        style="@style/Heading_Subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/duration"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/duration_tv"
+        app:layout_constraintStart_toStartOf="@+id/duration_tv"
+        app:layout_constraintTop_toBottomOf="@+id/duration_tv" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/distance_tv"
+        style="@style/Headline_Title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="00Km"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toStartOf="@id/steps_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/duration_subtitle_tv" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/steps_tv"
+        style="@style/Headline_Title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/distance_tv"
+        app:layout_constraintTop_toTopOf="@id/distance_tv" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/distance_subtitle_tv"
+        style="@style/Heading_Subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/distance"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@id/distance_tv"
+        app:layout_constraintStart_toStartOf="@+id/distance_tv"
+        app:layout_constraintTop_toBottomOf="@+id/distance_tv" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/steps_subtitle_tv"
+        style="@style/Heading_Subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/steps"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/steps_tv"
+        app:layout_constraintStart_toStartOf="@+id/steps_tv"
+        app:layout_constraintTop_toBottomOf="@id/steps_tv" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/start_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:contentDescription="@string/history_content_description"
+        android:src="@drawable/ic_baseline_play_arrow_24"
+        android:tint="@android:color/white"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/distance_subtitle_tv"
+        app:tint="@null" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/pause_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:contentDescription="@string/history_content_description"
+        android:src="@drawable/ic_baseline_pause_24"
+        android:tint="@android:color/white"
+        android:visibility="gone"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias=".2"
+        app:layout_constraintStart_toEndOf="@id/start_fab"
+        app:layout_constraintTop_toBottomOf="@id/distance_subtitle_tv"
+        app:tint="@null"
+        tools:visibility="visible" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/end_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:contentDescription="@string/history_content_description"
+        android:src="@drawable/ic_baseline_stop_circle_24"
+        android:tint="@android:color/white"
+        android:visibility="gone"
+        app:backgroundTint="@android:color/holo_red_light"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/start_fab"
+        app:layout_constraintHorizontal_bias=".8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/distance_subtitle_tv"
+        app:tint="@null"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

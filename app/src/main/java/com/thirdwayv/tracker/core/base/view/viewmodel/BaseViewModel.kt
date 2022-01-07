@@ -1,4 +1,4 @@
-package com.thirdwayv.core.base.view.viewmodel
+package com.thirdwayv.tracker.core.base.view.viewmodel
 
 
 import androidx.lifecycle.ViewModel

@@ -1,4 +1,4 @@
-package com.thirdwayv.core.base.view.screen
+package com.thirdwayv.tracker.core.base.view.screen
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import androidx.viewbinding.ViewBinding
-import com.thirdwayv.core.base.view.viewmodel.*
+import com.thirdwayv.tracker.core.base.view.viewmodel.*
+import com.thirdwayv.tracker.R
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -80,5 +83,24 @@ abstract class BaseBindingFragment<ViewBindingType : ViewBinding, STATE : ViewSt
     override fun onDestroyView() {
         _binding = null
         super.onDestroyView()
+    }
+
+    /**
+     * use default navController method to navigate in the app and  attaching default nav options
+     */
+    private fun Fragment.navigateTo(action: Int, args: Bundle? = null) {
+        findNavController().navigate(action, args, getDefaultNavOptions())
+    }
+
+    /**
+     * Method provides default navOptions that will be applied on all of the navigation
+     */
+    private fun getDefaultNavOptions() = navOptions {
+        anim {
+            enter = R.anim.slide_in_right
+            exit = R.anim.slide_out_left
+            popEnter = R.anim.slide_in_left
+            popExit = R.anim.slide_out_right
+        }
     }
 }

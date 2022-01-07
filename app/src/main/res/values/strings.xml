@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">RunnerTracker</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="history_content_description">History Floating Button</string>
+    <string name="tracker_home">Tracker Home</string>
+    <string name="duration">Duration</string>
+    <string name="distance">Distance</string>
+    <string name="steps">Steps</string>
 </resources>
