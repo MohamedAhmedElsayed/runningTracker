@@ -29,7 +29,7 @@ class TimerHandlerImp @Inject constructor() : TimerHandler {
         timerJob?.cancel()
     }
 
-    fun resetTimer() {
+    override fun resetTimer() {
         cancelTimer()
         currentSecond = 0
     }

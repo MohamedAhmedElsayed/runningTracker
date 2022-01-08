@@ -12,4 +12,5 @@ interface TimerHandler {
     )
 
     fun cancelTimer()
+    fun resetTimer()
 }

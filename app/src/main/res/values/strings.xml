@@ -7,4 +7,6 @@
     <string name="duration">Duration</string>
     <string name="distance">Distance</string>
     <string name="steps">Steps</string>
+    <string name="permissin_denaied_message">Please accept our permission to continue tracking</string>
+    <string name="start_counting_error_message">Sorry, canot start steps counting</string>
 </resources>

@@ -1,5 +1,7 @@
-package com.thirdwayv.tracker.features.home.presentation.domain.stepscounter.di
+package com.thirdwayv.tracker.features.home.presentation.domain.di
 
+import com.thirdwayv.tracker.features.home.presentation.data.repository.StepsCounterRepoImp
+import com.thirdwayv.tracker.features.home.presentation.domain.repository.StepsCounterRepo
 import com.thirdwayv.tracker.features.home.presentation.domain.stepscounter.StepsCounter
 import com.thirdwayv.tracker.features.home.presentation.domain.stepscounter.StepsCounterImp
 import dagger.Binds
@@ -13,4 +15,6 @@ abstract class StepsCounterModule {
     @Binds
     abstract fun bindsStepsCounter(stepsCounterImp: StepsCounterImp): StepsCounter
 
+    @Binds
+    abstract fun bindsStepsCounterRepo(stepsCounterRepoImp: StepsCounterRepoImp): StepsCounterRepo
 }
