@@ -25,6 +25,7 @@ buildscript {
         mockito_test = "3.11.2"
         mockito = "4.0.0"
         canary = "2.7"
+        canary = "2.7"
     }
 
     repositories {
