@@ -26,6 +26,7 @@ buildscript {
         mockito = "4.0.0"
         canary = "2.7"
         canary = "2.7"
+        gsm_location="19.0.0"
     }
 
     repositories {

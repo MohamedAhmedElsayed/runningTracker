@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor() :
-    BaseViewModel<HomeViewState, HomeViewEvent, HomeViewAction, HomeResult>(HomeViewState()) {
+    BaseViewModel<HomeViewState, HomeViewEvent, HomeViewAction, HomeResult>(LastHomeState.lastViewState) {
     private var currentViewState = initialState
     override fun handle(action: HomeViewAction): Flow<HomeResult> = flow {
         when (action) {
@@ -28,12 +28,12 @@ class HomeViewModel @Inject constructor() :
             }
             HomeViewAction.StartTracking -> {
                 onViewEvent(HomeViewEvent.StartTracking)
-                emit(HomeResult.UpdatedViewStateResult(initialState.copy(trackingState = HomeTrackingState.Started)))
+                emit(HomeResult.UpdatedViewStateResult(HomeViewState(trackingState = HomeTrackingState.Started)))
             }
             HomeViewAction.StopTracking -> {
                 //todo save data
                 onViewEvent(HomeViewEvent.StopTracking)
-                emit(HomeResult.UpdatedViewStateResult(initialState))
+                emit(HomeResult.UpdatedViewStateResult(HomeViewState()))
 
             }
         }
@@ -47,5 +47,13 @@ class HomeViewModel @Inject constructor() :
             }
         }
 
+    override fun onCleared() {
+        LastHomeState.lastViewState = currentState
+        super.onCleared()
+    }
+}
+
+object LastHomeState {
+    var lastViewState = HomeViewState()
 
 }
