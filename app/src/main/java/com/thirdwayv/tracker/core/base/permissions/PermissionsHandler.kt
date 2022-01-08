@@ -10,28 +10,32 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 class PermissionsHandler @Inject constructor(@ApplicationContext val context: Context) {
+    private var permissionLauncher: ActivityResultLauncher<Array<String>>? = null
     fun hasPermissions(permissions: Array<String>): Boolean =
         permissions.all {
             ActivityCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED
         }
 
-    fun requestPermissions(
+    fun registerPermissionCallBacks(
         fragment: Fragment,
-        permissions: Array<String>,
-        allPermissionsGranted: () -> Unit,
-        permissionsDenied: () -> Unit
-    ): ActivityResultLauncher<Array<String>> {
-        val permissionLauncher =
+        onAllPermissionsGranted: () -> Unit,
+        onPermissionsDenied: () -> Unit
+    ) {
+        permissionLauncher =
             fragment.registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
                 val granted = permissions.entries.all {
                     it.value == true
                 }
                 if (granted) {
-                    allPermissionsGranted()
+                    onAllPermissionsGranted()
                 } else
-                    permissionsDenied()
+                    onPermissionsDenied()
             }
-        permissionLauncher.launch(permissions)
-        return permissionLauncher
+
+    }
+
+    fun launchPermissions(permissions: Array<String>) {
+        permissionLauncher?.launch(permissions)
+
     }
 }

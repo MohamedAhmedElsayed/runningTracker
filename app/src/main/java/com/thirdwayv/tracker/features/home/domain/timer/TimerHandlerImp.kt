@@ -1,4 +1,4 @@
-package com.thirdwayv.tracker.features.home.presentation.domain.timer
+package com.thirdwayv.tracker.features.home.domain.timer
 
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -29,7 +29,7 @@ class TimerHandlerImp @Inject constructor() : TimerHandler {
         timerJob?.cancel()
     }
 
-    fun resetTimer() {
+    override fun resetTimer() {
         cancelTimer()
         currentSecond = 0
     }

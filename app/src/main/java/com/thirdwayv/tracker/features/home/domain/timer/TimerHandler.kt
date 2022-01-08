@@ -1,4 +1,4 @@
-package com.thirdwayv.tracker.features.home.presentation.domain.timer
+package com.thirdwayv.tracker.features.home.domain.timer
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -12,4 +12,5 @@ interface TimerHandler {
     )
 
     fun cancelTimer()
+    fun resetTimer()
 }
