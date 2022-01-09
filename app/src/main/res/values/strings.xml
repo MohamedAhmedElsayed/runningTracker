@@ -5,7 +5,7 @@
     <string name="history_content_description">History Floating Button</string>
     <string name="tracker_home">Tracker Home</string>
     <string name="duration">Duration</string>
-    <string name="distance">Distance</string>
+    <string name="distance">Distance (m)</string>
     <string name="steps">Steps</string>
     <string name="permissin_denaied_message">Please accept our permission to continue tracking</string>
     <string name="start_counting_error_message">Sorry, canot start steps counting</string>

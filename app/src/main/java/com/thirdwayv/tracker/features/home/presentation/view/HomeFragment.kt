@@ -17,8 +17,9 @@ import com.thirdwayv.tracker.core.base.extentions.toFormattedTimeString
 import com.thirdwayv.tracker.core.base.permissions.PermissionsHandler
 import com.thirdwayv.tracker.core.base.view.screen.BaseBindingFragment
 import com.thirdwayv.tracker.databinding.FragmentHomeBinding
+import com.thirdwayv.tracker.features.home.domain.distanceHandler.DistanceHandler
 import com.thirdwayv.tracker.features.home.domain.stepscounter.StepsCounter
-import com.thirdwayv.tracker.features.home.domain.timer.TimerHandler
+import com.thirdwayv.tracker.features.home.domain.trackingtimer.TimerHandler
 import com.thirdwayv.tracker.features.home.presentation.services.ForegroundOnlyLocationService
 import com.thirdwayv.tracker.features.home.presentation.viewmodel.*
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,6 +33,7 @@ class HomeFragment :
     BaseBindingFragment<FragmentHomeBinding, HomeViewState, HomeViewEvent, HomeViewAction, HomeResult>() {
     @Inject
     lateinit var timerHandler: TimerHandler
+
 
     @Inject
     lateinit var permissionsHandler: PermissionsHandler
@@ -47,6 +49,7 @@ class HomeFragment :
         handleViewEvents()
         observeTimer()
         observeStepsCounter()
+        observeDistance()
 
     }
 
@@ -152,6 +155,16 @@ class HomeFragment :
         }
     }
 
+    private fun observeDistance() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                DistanceHandler.getDistanceFlow().collect { distance ->
+                    viewModel dispatch HomeViewAction.UpdateDistance(distance)
+                }
+            }
+        }
+    }
+
     private fun observeStepsCounter() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -203,6 +216,8 @@ class HomeFragment :
         with(binding.cardContainer) {
             stepsTv.text = state.totalSteps.toString()
             durationTv.text = state.numberOfSeconds.toFormattedTimeString()
+            distanceTv.text = String.format("%.2f", state.distance)
+//            distanceTv.text =   state.distance.toString()
         }
     }
 

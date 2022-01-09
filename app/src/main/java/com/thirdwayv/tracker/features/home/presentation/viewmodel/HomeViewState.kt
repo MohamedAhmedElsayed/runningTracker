@@ -6,6 +6,7 @@ data class HomeViewState(
     val trackingState: HomeTrackingState = HomeTrackingState.Initial,
     val numberOfSeconds: Int = 0,
     val totalSteps: Float = 0f,
+    val distance: Float = 0f
 ) : ViewState
 
 sealed class HomeTrackingState {

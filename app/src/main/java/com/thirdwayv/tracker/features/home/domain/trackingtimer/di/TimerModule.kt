@@ -1,7 +1,7 @@
-package com.thirdwayv.tracker.features.home.domain.timer.di
+package com.thirdwayv.tracker.features.home.domain.trackingtimer.di
 
-import com.thirdwayv.tracker.features.home.domain.timer.TimerHandler
-import com.thirdwayv.tracker.features.home.domain.timer.TimerHandlerImp
+import com.thirdwayv.tracker.features.home.domain.trackingtimer.TimerHandler
+import com.thirdwayv.tracker.features.home.domain.trackingtimer.TimerHandlerImp
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

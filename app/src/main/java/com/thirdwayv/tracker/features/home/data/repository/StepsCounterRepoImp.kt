@@ -1,6 +1,6 @@
 package com.thirdwayv.tracker.features.home.data.repository
 
-import com.thirdwayv.tracker.features.home.data.local.StepsCounterLocalDataSource
+import com.thirdwayv.tracker.features.home.data.local.steps.StepsCounterLocalDataSource
 import com.thirdwayv.tracker.features.home.domain.repository.StepsCounterRepo
 import javax.inject.Inject
 

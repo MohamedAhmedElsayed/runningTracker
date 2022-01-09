@@ -1,4 +1,4 @@
-package com.thirdwayv.tracker.features.home.domain.timer
+package com.thirdwayv.tracker.features.home.domain.trackingtimer
 
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow

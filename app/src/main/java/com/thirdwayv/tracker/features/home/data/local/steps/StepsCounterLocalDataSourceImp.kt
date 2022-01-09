@@ -1,4 +1,4 @@
-package com.thirdwayv.tracker.features.home.data.local
+package com.thirdwayv.tracker.features.home.data.local.steps
 
 import com.thirdwayv.tracker.features.home.data.entity.StepsCounterModel
 import io.realm.Realm

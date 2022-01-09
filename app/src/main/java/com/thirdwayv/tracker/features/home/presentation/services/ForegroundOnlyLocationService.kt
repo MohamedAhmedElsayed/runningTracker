@@ -9,13 +9,16 @@ import android.os.IBinder
 import android.os.Looper
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.android.gms.location.*
 import com.thirdwayv.tracker.MainActivity
 import com.thirdwayv.tracker.R
+import com.thirdwayv.tracker.features.home.data.local.trips.TripsLocalDataSourceImp
+import com.thirdwayv.tracker.features.home.domain.distanceHandler.DistanceHandler
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import java.util.concurrent.TimeUnit
 
+@AndroidEntryPoint
 class ForegroundOnlyLocationService : Service() {
 
     private lateinit var notificationManager: NotificationManager
@@ -26,11 +29,11 @@ class ForegroundOnlyLocationService : Service() {
 
     private lateinit var locationCallback: LocationCallback
 
+    var tripsLocalDataSource: TripsLocalDataSourceImp=TripsLocalDataSourceImp()
+
 
     override fun onCreate() {
-        Log.d(TAG, "onCreate()")
-
-        notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+          notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
@@ -50,11 +53,10 @@ class ForegroundOnlyLocationService : Service() {
                     TAG,
                     "${
                         UUID.randomUUID()
-                    }current location ${locationResult.lastLocation.latitude} ${locationResult.lastLocation.longitude}"
+                    }  current location ${locationResult.lastLocation.latitude} ${locationResult.lastLocation.longitude}"
                 )
-                val intent = Intent(ACTION_FOREGROUND_ONLY_LOCATION_BROADCAST)
-                intent.putExtra(EXTRA_LOCATION, locationResult.lastLocation)
-                LocalBroadcastManager.getInstance(applicationContext).sendBroadcast(intent)
+                   val distance = tripsLocalDataSource.addStepLocation(locationResult.lastLocation)
+                DistanceHandler.updateDistance(distance)
 
             }
         }

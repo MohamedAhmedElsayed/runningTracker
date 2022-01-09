@@ -1,7 +1,7 @@
 package com.thirdwayv.tracker.features.home.data.di
 
-import com.thirdwayv.tracker.features.home.data.local.StepsCounterLocalDataSource
-import com.thirdwayv.tracker.features.home.data.local.StepsCounterLocalDataSourceImp
+import com.thirdwayv.tracker.features.home.data.local.steps.StepsCounterLocalDataSource
+import com.thirdwayv.tracker.features.home.data.local.steps.StepsCounterLocalDataSourceImp
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
