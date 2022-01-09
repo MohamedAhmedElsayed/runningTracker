@@ -9,7 +9,6 @@ import com.thirdwayv.tracker.core.base.view.screen.BaseBindingFragment
 import com.thirdwayv.tracker.databinding.FragmentHistoryBinding
 import com.thirdwayv.tracker.features.history.presentation.viewmodel.*
 import com.thirdwayv.tracker.features.home.data.entity.TrackingTripModel
-import com.thirdwayv.tracker.features.home.presentation.viewmodel.HomeViewAction
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,11 +30,15 @@ class HistoryFragment :
     }
 
     override fun handleViewState(state: HistoryViewState) {
+        if (state.tripsList.isNullOrEmpty())
+            binding.emptyDataTv.visibility = View.VISIBLE
+        else
+            binding.emptyDataTv.visibility = View.GONE
         historyAdapter.submitList(state.tripsList)
     }
 
     override fun onItemSelected(position: Int, item: TrackingTripModel) {
-
+//todo navigate to details
     }
 
 

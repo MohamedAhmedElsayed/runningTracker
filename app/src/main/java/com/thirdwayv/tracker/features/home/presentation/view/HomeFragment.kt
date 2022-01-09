@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,6 +43,8 @@ class HomeFragment :
     lateinit var stepsCounter: StepsCounter
     override val viewModel: HomeViewModel by activityViewModels()
 
+    @Inject
+    lateinit var distanceHandler: DistanceHandler
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViewClickListeners()
@@ -154,7 +157,8 @@ class HomeFragment :
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 timerHandler.getTimerFlow().collect { seconds ->
-                    viewModel dispatch HomeViewAction.UpdateSeconds(seconds)
+                    if (viewModel.currentState.trackingState != HomeTrackingState.Initial)
+                        viewModel dispatch HomeViewAction.UpdateSeconds(seconds)
                 }
             }
         }
@@ -163,8 +167,9 @@ class HomeFragment :
     private fun observeDistance() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                DistanceHandler.getDistanceFlow().collect { distance ->
-                    viewModel dispatch HomeViewAction.UpdateDistance(distance)
+                distanceHandler.getDistanceFlow().collect { distance ->
+                    if (viewModel.currentState.trackingState != HomeTrackingState.Initial)
+                        viewModel dispatch HomeViewAction.UpdateDistance(distance)
                 }
             }
         }
@@ -174,7 +179,8 @@ class HomeFragment :
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 stepsCounter.getStepsCounterObserver().collect { steps ->
-                    viewModel dispatch HomeViewAction.UpdateSteps(steps)
+                    if (viewModel.currentState.trackingState != HomeTrackingState.Initial)
+                        viewModel dispatch HomeViewAction.UpdateSteps(steps)
 
                 }
             }
@@ -187,7 +193,7 @@ class HomeFragment :
     ) = FragmentHomeBinding.inflate(inflater, container, false)
 
     override fun handleViewState(state: HomeViewState) {
-        setViewsText(state)
+         setViewsText(state)
         when (state.trackingState) {
             HomeTrackingState.Initial -> setButtonsInitialState()
             HomeTrackingState.Paused -> setButtonsPausedState()
@@ -206,6 +212,7 @@ class HomeFragment :
 
     private fun setButtonsPausedState() {
         with(binding.cardContainer) {
+             endTrackingFab.visibility = View.VISIBLE
             trackingFab.setImageResource(R.drawable.ic_baseline_play_arrow_24)
         }
     }

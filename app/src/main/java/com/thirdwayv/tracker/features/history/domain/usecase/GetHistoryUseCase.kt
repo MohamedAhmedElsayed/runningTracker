@@ -7,5 +7,5 @@ import javax.inject.Inject
 
 class GetHistoryUseCase @Inject constructor(private val historyRepo: HistoryRepo) :
     UseCase<Unit, HistoryResult> {
-    override fun execute(input: Unit?) = HistoryResult.LoadedHistory(historyRepo.getFinishedTrips())
+    override fun execute(input: Unit?) = HistoryResult.LoadedHistory(historyRepo.getFinishedTrips().reversed())
 }

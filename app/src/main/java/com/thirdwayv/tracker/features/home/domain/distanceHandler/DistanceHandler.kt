@@ -4,7 +4,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 import javax.inject.Singleton
 
- object DistanceHandler   {
+@Singleton
+class DistanceHandler @Inject constructor() {
     private val distanceFlow = MutableStateFlow(0f)
     fun getDistanceFlow() = distanceFlow
     fun updateDistance(distance: Float) {

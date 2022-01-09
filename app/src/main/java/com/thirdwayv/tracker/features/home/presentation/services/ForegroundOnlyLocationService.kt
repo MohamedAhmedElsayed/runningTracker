@@ -12,11 +12,12 @@ import androidx.core.app.NotificationCompat
 import com.google.android.gms.location.*
 import com.thirdwayv.tracker.MainActivity
 import com.thirdwayv.tracker.R
-import com.thirdwayv.tracker.features.home.data.local.trips.TripsLocalDataSourceImp
 import com.thirdwayv.tracker.features.home.domain.distanceHandler.DistanceHandler
+import com.thirdwayv.tracker.features.home.domain.usercase.AddStepLocationUseCase
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ForegroundOnlyLocationService : Service() {
@@ -29,11 +30,16 @@ class ForegroundOnlyLocationService : Service() {
 
     private lateinit var locationCallback: LocationCallback
 
-    var tripsLocalDataSource: TripsLocalDataSourceImp=TripsLocalDataSourceImp()
+    @Inject
+    lateinit var addStepsLocUseCase: AddStepLocationUseCase
 
+    @Inject
+    lateinit var distanceHandler: DistanceHandler
 
     override fun onCreate() {
-          notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        super.onCreate()
+
+        notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
@@ -55,8 +61,8 @@ class ForegroundOnlyLocationService : Service() {
                         UUID.randomUUID()
                     }  current location ${locationResult.lastLocation.latitude} ${locationResult.lastLocation.longitude}"
                 )
-                   val distance = tripsLocalDataSource.addStepLocation(locationResult.lastLocation)
-                DistanceHandler.updateDistance(distance)
+                val distance = addStepsLocUseCase.execute(locationResult.lastLocation)
+                distanceHandler.updateDistance(distance)
 
             }
         }
@@ -160,7 +166,7 @@ class ForegroundOnlyLocationService : Service() {
             .setOngoing(true)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .addAction(
-                R.drawable.ic_launcher_background, getString(R.string.open_home),
+                R.mipmap.ic_launcher, getString(R.string.open_home),
                 activityPendingIntent
             )
             .build()
@@ -169,8 +175,6 @@ class ForegroundOnlyLocationService : Service() {
 
     companion object {
         private const val TAG = "LocationService"
-        internal const val ACTION_FOREGROUND_ONLY_LOCATION_BROADCAST =
-            "FOREGROUND_ONLY_LOCATION_BROADCAST"
         internal const val EXTRA_LOCATION = "extra.LOCATION"
         const val EXTRA_CANCEL_LOCATION_TRACKING_FROM_NOTIFICATION =
             "CANCEL_LOCATION_TRACKING_FROM_NOTIFICATION"
