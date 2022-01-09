@@ -12,4 +12,5 @@
     <string name="no_location_text">Unkown location</string>
     <string name="notification_title">Tracking is running</string>
     <string name="open_home">Open home</string>
+    <string name="trips_history">History trips</string>
 </resources>

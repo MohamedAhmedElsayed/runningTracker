@@ -75,6 +75,11 @@ class HomeFragment :
         timerHandler.resetTimer()
         stepsCounter.stopCounter()
         startLocationService(true)
+        navigateToHistory()
+    }
+
+    private fun navigateToHistory() {
+        navigateTo(HomeFragmentDirections.actionHomeFragmentToHistoryFragment())
     }
 
     private fun initPermissionContract() {
@@ -103,7 +108,7 @@ class HomeFragment :
             endTrackingFab.setOnClickListener {
                 viewModel dispatch HomeViewAction.StopTracking
             }
-
+            binding.historyFab.setOnClickListener { navigateToHistory() }
         }
     }
 

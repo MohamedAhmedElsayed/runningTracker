@@ -49,6 +49,7 @@ class TripsLocalDataSourceImp @Inject constructor() : TripsLocalDataSource {
                     }
 
                 notCompletedTrip?.distace = distance
+
             }
         }
         return distance

@@ -8,11 +8,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import androidx.viewbinding.ViewBinding
-import com.thirdwayv.tracker.core.base.view.viewmodel.*
 import com.thirdwayv.tracker.R
+import com.thirdwayv.tracker.core.base.view.viewmodel.*
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -88,8 +89,8 @@ abstract class BaseBindingFragment<ViewBindingType : ViewBinding, STATE : ViewSt
     /**
      * use default navController method to navigate in the app and  attaching default nav options
      */
-    private fun Fragment.navigateTo(action: Int, args: Bundle? = null) {
-        findNavController().navigate(action, args, getDefaultNavOptions())
+    fun navigateTo(action: NavDirections) {
+        findNavController().navigate(action, getDefaultNavOptions())
     }
 
     /**
