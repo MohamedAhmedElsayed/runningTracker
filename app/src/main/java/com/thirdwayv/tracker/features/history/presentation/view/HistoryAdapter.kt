@@ -12,7 +12,7 @@ import com.thirdwayv.tracker.databinding.TripDetailsBinding
 class HistoryAdapter(private val interaction: Interaction? = null) :
     RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
-    val DIFF_CALLBACK = object : DiffUtil.ItemCallback<TrackingTripModel>() {
+    val diffCallBack = object : DiffUtil.ItemCallback<TrackingTripModel>() {
 
         override fun areItemsTheSame(
             oldItem: TrackingTripModel,
@@ -33,7 +33,7 @@ class HistoryAdapter(private val interaction: Interaction? = null) :
         }
 
     }
-    private val differ = AsyncListDiffer(this, DIFF_CALLBACK)
+    private val differ = AsyncListDiffer(this, diffCallBack)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
 

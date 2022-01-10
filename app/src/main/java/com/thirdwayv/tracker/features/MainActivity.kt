@@ -1,4 +1,4 @@
-package com.thirdwayv.tracker
+package com.thirdwayv.tracker.features
 
 import android.os.Bundle
 import android.view.MenuItem
@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.thirdwayv.tracker.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -19,7 +20,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupToolbarWithNavigation() {
         val naveHostFragment =
-
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = naveHostFragment.navController
         val appBarConfiguration = AppBarConfiguration(navController.graph)

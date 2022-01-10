@@ -1,4 +1,4 @@
-package com.thirdwayv.tracker.features
+package com.thirdwayv.tracker
 
 import android.app.Application
 import com.thirdwayv.tracker.core.base.utils.Constants.REALM_NAME

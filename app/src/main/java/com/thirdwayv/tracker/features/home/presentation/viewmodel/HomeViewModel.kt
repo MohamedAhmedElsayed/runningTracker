@@ -65,6 +65,7 @@ class HomeViewModel @Inject constructor(
     }
 }
 
+//save lsat state to be used when open app again from service notification
 object LastHomeState {
     var lastViewState = HomeViewState()
 }

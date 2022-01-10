@@ -34,7 +34,6 @@ class HomeFragment :
     @Inject
     lateinit var timerHandler: TimerHandler
 
-
     @Inject
     lateinit var permissionsHandler: PermissionsHandler
 
@@ -192,7 +191,7 @@ class HomeFragment :
     ) = FragmentHomeBinding.inflate(inflater, container, false)
 
     override fun handleViewState(state: HomeViewState) {
-         setViewsText(state)
+        setViewsText(state)
         when (state.trackingState) {
             HomeTrackingState.Initial -> setButtonsInitialState()
             HomeTrackingState.Paused -> setButtonsPausedState()
@@ -211,7 +210,7 @@ class HomeFragment :
 
     private fun setButtonsPausedState() {
         with(binding.cardContainer) {
-             endTrackingFab.visibility = View.VISIBLE
+            endTrackingFab.visibility = View.VISIBLE
             trackingFab.setImageResource(R.drawable.ic_baseline_play_arrow_24)
         }
     }
@@ -228,7 +227,6 @@ class HomeFragment :
             stepsTv.text = state.totalSteps.toString()
             durationTv.text = state.numberOfSeconds.toFormattedTimeString()
             distanceTv.text = String.format("%.2f", state.distance)
-//            distanceTv.text =   state.distance.toString()
         }
     }
 

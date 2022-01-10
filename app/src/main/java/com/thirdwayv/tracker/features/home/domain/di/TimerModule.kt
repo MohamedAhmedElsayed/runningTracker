@@ -1,4 +1,4 @@
-package com.thirdwayv.tracker.features.home.domain.trackingtimer.di
+package com.thirdwayv.tracker.features.home.domain.di
 
 import com.thirdwayv.tracker.features.home.domain.trackingtimer.TimerHandler
 import com.thirdwayv.tracker.features.home.domain.trackingtimer.TimerHandlerImp
