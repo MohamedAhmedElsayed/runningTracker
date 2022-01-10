@@ -10,8 +10,8 @@ import android.os.Looper
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.google.android.gms.location.*
-import com.thirdwayv.tracker.features.MainActivity
 import com.thirdwayv.tracker.R
+import com.thirdwayv.tracker.features.MainActivity
 import com.thirdwayv.tracker.features.home.domain.distanceHandler.DistanceHandler
 import com.thirdwayv.tracker.features.home.domain.usercase.AddStepLocationUseCase
 import dagger.hilt.android.AndroidEntryPoint
