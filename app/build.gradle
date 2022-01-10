@@ -6,6 +6,8 @@ plugins {
     id 'androidx.navigation.safeargs.kotlin'
     id 'kotlin-parcelize'
     id 'realm-android'
+    id 'org.jetbrains.dokka'
+
 }
 
 android {

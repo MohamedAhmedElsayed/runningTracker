@@ -5,6 +5,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 import javax.inject.Singleton
 
+/**
+ * class to count tracking duration
+ * */
 @Singleton
 class TimerHandlerImp @Inject constructor() : TimerHandler {
     private val _timerSharedFlow = MutableStateFlow(0)
@@ -13,6 +16,9 @@ class TimerHandlerImp @Inject constructor() : TimerHandler {
 
     override fun getTimerFlow() = _timerSharedFlow
 
+    /**
+     * create new coroutine job and start counting
+     * */
     override fun startTimer(
         timeInterval: Long,
         coroutineScope: CoroutineScope

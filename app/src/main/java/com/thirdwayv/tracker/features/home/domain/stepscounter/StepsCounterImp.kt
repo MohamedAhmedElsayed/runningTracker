@@ -11,6 +11,12 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
+/**
+ * class that use TYPE_STEP_COUNTER for detecting steps
+ * @param context is application context
+ * @param GetPreviousStepsCounterUseCase to get previous cashed steps to count from it not from beggin
+ * @param SavePreviousStepsCounterUseCase to save current step counter
+ * */
 class StepsCounterImp @Inject constructor(
     @ApplicationContext val context: Context,
     getPreviousStepsCounterUseCase: GetPreviousStepsCounterUseCase,
@@ -24,6 +30,11 @@ class StepsCounterImp @Inject constructor(
     private var previousTotalSteps = getPreviousStepsCounterUseCase.execute()
 
     override fun getStepsCounterObserver() = _stepsCounterFlow
+
+    /**
+     * start counting
+     * @param registrationResult callback function take  registeredSuccessfully status as a parameter
+     * */
     override fun startStepCounter(registrationResult: (registeredSuccessfully: Boolean) -> Unit) {
         if (stepSensor != null) {
             // Rate suitable for the user interface

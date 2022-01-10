@@ -14,11 +14,17 @@ import com.thirdwayv.tracker.R
 abstract class BaseFragment<ViewBindingType : ViewBinding> : Fragment() {
     private var _binding: ViewBindingType? = null
 
-    // Binding variable to be used for accessing views.
+    /**
+     * Binding variable to be used for accessing views.
+     * */
+
+
     protected val binding
         get() = requireNotNull(_binding)
 
-    // Calls the abstract function to return the ViewBinding.
+    /**
+     *Calls the abstract function to return the ViewBinding.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,7 +34,9 @@ abstract class BaseFragment<ViewBindingType : ViewBinding> : Fragment() {
         return requireNotNull(_binding).root
     }
 
-    //abstract function to get ViewBinding
+    /**
+     * abstract function to get ViewBinding
+     * */
     abstract fun setupViewBinding(
         inflater: LayoutInflater, container: ViewGroup?,
     ): ViewBindingType

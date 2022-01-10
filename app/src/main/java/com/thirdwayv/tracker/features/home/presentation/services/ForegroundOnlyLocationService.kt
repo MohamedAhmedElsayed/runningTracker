@@ -18,7 +18,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
-
+/**
+* foreground service that start request location updates
+* */
 @AndroidEntryPoint
 class ForegroundOnlyLocationService : Service() {
 
@@ -55,12 +57,7 @@ class ForegroundOnlyLocationService : Service() {
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
                 super.onLocationResult(locationResult)
-                Log.e(
-                    TAG,
-                    "${
-                        UUID.randomUUID()
-                    }  current location ${locationResult.lastLocation.latitude} ${locationResult.lastLocation.longitude}"
-                )
+
                 val distance = addStepsLocUseCase.execute(locationResult.lastLocation)
                 distanceHandler.updateDistance(distance)
 
@@ -69,7 +66,6 @@ class ForegroundOnlyLocationService : Service() {
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
-        Log.d(TAG, "onStartCommand()")
 
         val cancelLocationTrackingFromNotification =
             intent.getBooleanExtra(EXTRA_CANCEL_LOCATION_TRACKING_FROM_NOTIFICATION, false)
@@ -87,8 +83,7 @@ class ForegroundOnlyLocationService : Service() {
     }
 
     override fun onDestroy() {
-        Log.d(TAG, "onDestroy()")
-    }
+     }
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
@@ -96,7 +91,6 @@ class ForegroundOnlyLocationService : Service() {
 
 
     private fun subscribeToLocationUpdates() {
-        Log.d(TAG, "subscribeToLocationUpdates()")
 
         try {
             fusedLocationProviderClient.requestLocationUpdates(
