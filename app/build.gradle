@@ -36,6 +36,9 @@ android {
     viewBinding {
         enabled = true
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -49,6 +52,7 @@ dependencies {
     //coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_kotlinx_version")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_kotlinx_version")
+    implementation 'com.google.android.gms:play-services-maps:18.0.1'
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.1'
 
     //AppCompat

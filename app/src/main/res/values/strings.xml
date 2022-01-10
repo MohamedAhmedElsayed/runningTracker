@@ -14,4 +14,6 @@
     <string name="open_home">Open home</string>
     <string name="trips_history">History trips</string>
     <string name="no_data_found">No data found</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="trip_details">Trip details</string>
 </resources>

@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.thirdwayv.tracker.core.base.extentions.toFormattedTimeString
-import com.thirdwayv.tracker.databinding.HistoryItemBinding
-import com.thirdwayv.tracker.features.home.data.entity.TrackingTripModel
+import com.thirdwayv.tracker.databinding.TripDetailsBinding
+ import com.thirdwayv.tracker.features.home.data.entity.TrackingTripModel
 
 class HistoryAdapter(private val interaction: Interaction? = null) :
     RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
@@ -38,7 +38,7 @@ class HistoryAdapter(private val interaction: Interaction? = null) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
 
         return HistoryViewHolder(
-            HistoryItemBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+            TripDetailsBinding.inflate(LayoutInflater.from(parent.context), parent, false),
             interaction
         )
     }
@@ -59,7 +59,7 @@ class HistoryAdapter(private val interaction: Interaction? = null) :
 
     class HistoryViewHolder
     constructor(
-        private val historyItem: HistoryItemBinding,
+        private val historyItem: TripDetailsBinding,
         private val interaction: Interaction?
     ) : RecyclerView.ViewHolder(historyItem.root) {
 

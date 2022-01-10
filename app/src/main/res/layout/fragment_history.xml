@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:itemCount="4"
-        tools:listitem="@layout/history_item" />
+        tools:listitem="@layout/trip_details" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/empty_data_tv"

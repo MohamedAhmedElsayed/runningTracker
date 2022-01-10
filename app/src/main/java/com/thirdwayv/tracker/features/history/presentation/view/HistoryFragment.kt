@@ -5,7 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.thirdwayv.tracker.core.base.view.screen.BaseBindingFragment
+import androidx.navigation.fragment.findNavController
+import com.thirdwayv.tracker.core.base.view.screen.MVIBaseFragment
 import com.thirdwayv.tracker.databinding.FragmentHistoryBinding
 import com.thirdwayv.tracker.features.history.presentation.viewmodel.*
 import com.thirdwayv.tracker.features.home.data.entity.TrackingTripModel
@@ -13,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HistoryFragment :
-    BaseBindingFragment<FragmentHistoryBinding, HistoryViewState, HistoryViewEvent, HistoryAction, HistoryResult>(),
+    MVIBaseFragment<FragmentHistoryBinding, HistoryViewState, HistoryViewEvent, HistoryAction, HistoryResult>(),
     HistoryAdapter.Interaction {
     override val viewModel: HistoryViewModel by viewModels()
     lateinit var historyAdapter: HistoryAdapter
@@ -38,7 +39,9 @@ class HistoryFragment :
     }
 
     override fun onItemSelected(position: Int, item: TrackingTripModel) {
-//todo navigate to details
+        findNavController().navigate(
+            HistoryFragmentDirections.actionHistoryFragmentToDetailsFragment(item)
+        )
     }
 
 

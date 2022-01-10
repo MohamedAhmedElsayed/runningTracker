@@ -18,5 +18,24 @@
         android:id="@+id/historyFragment"
         android:name="com.thirdwayv.tracker.features.history.presentation.view.HistoryFragment"
         android:label="@string/trips_history"
-        tools:layout="@layout/fragment_history" />
+        tools:layout="@layout/fragment_history">
+
+        <action
+            android:id="@+id/action_historyFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment">
+            <argument
+                android:name="tracking_details"
+                app:argType="com.thirdwayv.tracker.features.home.data.entity.TrackingTripModel" />
+
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.thirdwayv.tracker.features.trackingdetails.presentation.view.DetailsFragment"
+        android:label="@string/trip_details"
+        tools:layout="@layout/fragment_details">
+        <argument
+            android:name="tracking_details"
+            app:argType="com.thirdwayv.tracker.features.home.data.entity.TrackingTripModel" />
+    </fragment>
 </navigation>

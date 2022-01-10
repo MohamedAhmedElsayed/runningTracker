@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +15,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.thirdwayv.tracker.R
 import com.thirdwayv.tracker.core.base.extentions.toFormattedTimeString
 import com.thirdwayv.tracker.core.base.permissions.PermissionsHandler
-import com.thirdwayv.tracker.core.base.view.screen.BaseBindingFragment
+import com.thirdwayv.tracker.core.base.view.screen.MVIBaseFragment
 import com.thirdwayv.tracker.databinding.FragmentHomeBinding
 import com.thirdwayv.tracker.features.home.domain.distanceHandler.DistanceHandler
 import com.thirdwayv.tracker.features.home.domain.stepscounter.StepsCounter
@@ -31,7 +30,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment :
-    BaseBindingFragment<FragmentHomeBinding, HomeViewState, HomeViewEvent, HomeViewAction, HomeResult>() {
+    MVIBaseFragment<FragmentHomeBinding, HomeViewState, HomeViewEvent, HomeViewAction, HomeResult>() {
     @Inject
     lateinit var timerHandler: TimerHandler
 
