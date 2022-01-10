@@ -1,6 +1,5 @@
 package com.thirdwayv.tracker.features.history.presentation.viewmodel
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.thirdwayv.tracker.MainCoroutineRule
 import com.thirdwayv.tracker.features.history.domain.usecase.GetHistoryUseCase
 import com.thirdwayv.tracker.features.home.data.entity.TrackingTripModel
@@ -21,8 +20,6 @@ import org.mockito.junit.MockitoJUnitRunner
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
 class HistoryViewModelTest {
-    @get:Rule
-    var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @get:Rule
     var mainCoroutineRule = MainCoroutineRule()
